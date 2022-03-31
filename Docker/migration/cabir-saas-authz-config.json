@@ -1,0 +1,94 @@
+{
+  "allowRemoteResourceManagement": true,
+  "policyEnforcementMode": "PERMISSIVE",
+  "resources": [
+    {
+      "name": "Default Resource",
+      "type": "urn:cabir-saas:resources:default",
+      "ownerManagedAccess": false,
+      "attributes": {},
+      "_id": "0dd7993b-78de-4716-b4a2-799490c88480",
+      "uris": [
+        "/*"
+      ]
+    },
+    {
+      "name": "profile",
+      "type": "urn:cabir-saas:resource:profile",
+      "ownerManagedAccess": true,
+      "displayName": "Profile",
+      "attributes": {},
+      "_id": "8a7e5f86-6655-479c-8de4-91bb95cabc65",
+      "uris": [
+        "/*"
+      ],
+      "scopes": [
+        {
+          "name": "read"
+        },
+        {
+          "name": "update"
+        },
+        {
+          "name": "delete"
+        },
+        {
+          "name": "create"
+        }
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "id": "a3773234-7693-470a-8e42-322d0c81ee7b",
+      "name": "Default Policy",
+      "description": "A policy that grants access only for users within this realm",
+      "type": "js",
+      "logic": "POSITIVE",
+      "decisionStrategy": "AFFIRMATIVE",
+      "config": {
+        "code": "// by default, grants any permission associated with this policy\n$evaluation.grant();\n"
+      }
+    },
+    {
+      "id": "46910801-38b8-49a8-a1e2-c963b3211b45",
+      "name": "Default Permission",
+      "description": "A permission that applies to the default resource type",
+      "type": "resource",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "defaultResourceType": "urn:cabir-saas:resources:default",
+        "applyPolicies": "[\"Default Policy\"]"
+      }
+    }
+  ],
+  "scopes": [
+    {
+      "id": "fda56f85-461f-49b7-a23f-209339098a02",
+      "name": "account:view",
+      "displayName": "account view"
+    },
+    {
+      "id": "36fc6a09-1aad-4f6b-a9cd-3f5cbca6c8f8",
+      "name": "create",
+      "displayName": "Create"
+    },
+    {
+      "id": "64af9782-2839-43ba-9f55-85b29c5902ea",
+      "name": "delete",
+      "displayName": "Delete"
+    },
+    {
+      "id": "824d207d-4d28-4955-9ecb-025f2868b8b3",
+      "name": "read",
+      "displayName": "Read"
+    },
+    {
+      "id": "f89bb70e-4446-46ba-8242-a54885f06817",
+      "name": "update",
+      "displayName": "Update"
+    }
+  ],
+  "decisionStrategy": "UNANIMOUS"
+}
